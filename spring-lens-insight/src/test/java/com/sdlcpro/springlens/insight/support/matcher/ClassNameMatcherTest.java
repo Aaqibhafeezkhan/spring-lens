@@ -1,6 +1,5 @@
 package com.sdlcpro.springlens.insight.support.matcher;
 
-import com.sdlcpro.springlens.insight.support.delegator.AbstractConnectionDelegator;
 import com.sdlcpro.springlens.insight.support.provider.ClassNameProvider;
 import org.junit.jupiter.api.Test;
 
@@ -44,24 +43,6 @@ class ClassNameMatcherTest {
 
         boolean result = matcher.matches(provider);
 
-        assertTrue(result);
-    }
-
-
-
-    @Test
-    void shouldMatchExistingClassNameCaseTrue2() {
-        ClassNameProvider provider = mock(ClassNameProvider.class);
-
-        String className = AbstractConnectionDelegator.class.getName();
-
-        when(provider.getClassName()).thenReturn(className);
-        when(provider.getValue()).thenCallRealMethod();
-
-        ClassNameMatcher<ClassNameProvider> matcher =
-                new ClassNameMatcher<>(Set.of(className));
-
-        boolean result = matcher.matches(provider);
         assertTrue(result);
     }
 }

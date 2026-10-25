@@ -1,4 +1,4 @@
-package com.sdlcpro.springlens.insight.support.delegator;
+package com.sdlcpro.springlens.insight.jdbc.delegator;
 
 import javax.sql.DataSource;
 import java.io.PrintWriter;
