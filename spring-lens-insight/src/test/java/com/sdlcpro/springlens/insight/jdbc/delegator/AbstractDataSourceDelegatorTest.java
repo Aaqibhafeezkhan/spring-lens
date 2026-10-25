@@ -1,4 +1,4 @@
-package com.sdlcpro.springlens.insight.support.delegator;
+package com.sdlcpro.springlens.insight.jdbc.delegator;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -6,6 +6,8 @@ import static org.mockito.Mockito.when;
 
 import java.sql.SQLException;
 import javax.sql.DataSource;
+
+import com.sdlcpro.springlens.insight.jdbc.delegator.AbstractDataSourceDelegator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

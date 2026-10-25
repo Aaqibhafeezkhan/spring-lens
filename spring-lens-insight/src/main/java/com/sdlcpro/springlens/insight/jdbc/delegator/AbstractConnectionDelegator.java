@@ -1,4 +1,4 @@
-package com.sdlcpro.springlens.insight.support.delegator;
+package com.sdlcpro.springlens.insight.jdbc.delegator;
 
 import java.sql.*;
 import java.util.Map;
