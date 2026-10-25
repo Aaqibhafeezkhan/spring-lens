@@ -1,6 +1,6 @@
 package com.sdlcpro.springlens.insight.support.matcher;
 
-import com.sdlcpro.springlens.insight.support.delegator.AbstractConnectionDelegator;
+import com.sdlcpro.springlens.insight.jdbc.delegator.AbstractConnectionDelegator;
 import com.sdlcpro.springlens.insight.support.provider.ClassNameProvider;
 import org.junit.jupiter.api.Test;
 
