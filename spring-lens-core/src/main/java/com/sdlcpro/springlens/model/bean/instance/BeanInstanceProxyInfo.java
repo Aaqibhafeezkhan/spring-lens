@@ -1,5 +1,6 @@
 package com.sdlcpro.springlens.model.bean.instance;
 
+import com.sdlcpro.springlens.annotation.SpringLensWritable;
 import com.sdlcpro.springlens.model.bean.ProxyType;
 import com.sdlcpro.springlens.util.Preconditions;
 
@@ -8,7 +9,12 @@ import java.util.List;
 /**
  * Captures structural runtime information regarding AOP and CGLIB proxies 
  * wrapping a Spring bean bean=instance.
+ *
+ * <p>This type is a response model marked with {@link SpringLensWritable}, so it is
+ * serialized as the body of Spring-Lens REST responses using the
+ * {@code application/vnd.sdlc-pro.spring-lens.v2+json} media type.
  */
+@SpringLensWritable
 public record BeanInstanceProxyInfo(
         String targetClass,
         List<String> advices,

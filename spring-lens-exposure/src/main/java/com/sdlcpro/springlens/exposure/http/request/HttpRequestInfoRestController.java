@@ -3,12 +3,12 @@ package com.sdlcpro.springlens.exposure.http.request;
 import com.sdlcpro.springlens.annotation.SpringLensEndpoint;
 import com.sdlcpro.springlens.annotation.SpringLensInternalComponent;
 import com.sdlcpro.springlens.exposure.ApiResponseHandler;
+import com.sdlcpro.springlens.exposure.SpringLensMediaType;
 import com.sdlcpro.springlens.model.http.HttpRequestMethod;
 import com.sdlcpro.springlens.model.http.request.HttpResponseStatus;
 import com.sdlcpro.springlens.query.PageRequest;
 import com.sdlcpro.springlens.query.Sort;
 import com.sdlcpro.springlens.repository.http.HttpRequestInfoRepository;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,6 +42,8 @@ public class HttpRequestInfoRestController {
     /**
      * Returns a page of captured HTTP request/response transactions.
      *
+     * <p>Produces {@link SpringLensMediaType#APPLICATION_SPRING_LENS_JSON_VALUE}.
+     *
      * @param method     the HTTP method to filter by (e.g. GET, POST)
      * @param uri        substring to match against the request URI
      * @param statusCode the HTTP response status code to filter by
@@ -55,7 +57,7 @@ public class HttpRequestInfoRestController {
      * @return a {@link ResponseEntity} wrapping the requested
      * {@link com.sdlcpro.springlens.query.PageResponse page} of HTTP transactions
      */
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(produces = SpringLensMediaType.APPLICATION_SPRING_LENS_JSON_VALUE)
     public ResponseEntity<?> getHttpRequestInfo(
             @RequestParam(value = "method", required = false) String method,
             @RequestParam(value = "uri", required = false) String uri,
@@ -87,11 +89,13 @@ public class HttpRequestInfoRestController {
     /**
      * Returns a single captured HTTP transaction by its id.
      *
+     * <p>Produces {@link SpringLensMediaType#APPLICATION_SPRING_LENS_JSON_VALUE}.
+     *
      * @param id the transaction id
      * @return a {@link ResponseEntity} wrapping the matching
      * {@link com.sdlcpro.springlens.model.http.request.HttpRequestInfo}
      */
-    @GetMapping(value = "/find", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/find", produces = SpringLensMediaType.APPLICATION_SPRING_LENS_JSON_VALUE)
     public ResponseEntity<?> getHttpRequestInfoById(@RequestParam("id") String id) {
         return ApiResponseHandler.handle(
                 () -> this.httpRequestInfoRepository.findById(id),

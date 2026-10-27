@@ -1,5 +1,6 @@
 package com.sdlcpro.springlens.model.http.request;
 
+import com.sdlcpro.springlens.annotation.SpringLensWritable;
 import com.sdlcpro.springlens.util.Preconditions;
 
 import java.time.Instant;
@@ -9,7 +10,12 @@ import java.time.Instant;
  * snapshots of a single HTTP transaction, along with runtime execution
  * metrics such as timing, asynchronous processing state, and any
  * unhandled exception that occurred during processing.
+ *
+ * <p>This type is a response model marked with {@link SpringLensWritable}, so it is
+ * serialized as the body of Spring-Lens REST responses using the
+ * {@code application/vnd.sdlc-pro.spring-lens.v2+json} media type.
  */
+@SpringLensWritable
 public record HttpRequestInfo(
         String id,
         HttpRequestData requestData,
