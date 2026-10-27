@@ -19,7 +19,6 @@ class RandomIdGeneratorTest {
         }
     }
 
-
     @ParameterizedTest
     @EnumSource(value = RandomIdGenerator.Length.class)
     void shouldGenerateIdWithExpectedLength(RandomIdGenerator.Length length) {
