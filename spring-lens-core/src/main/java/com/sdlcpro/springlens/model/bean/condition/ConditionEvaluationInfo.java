@@ -1,5 +1,6 @@
 package com.sdlcpro.springlens.model.bean.condition;
 
+import com.sdlcpro.springlens.annotation.SpringLensWritable;
 import com.sdlcpro.springlens.util.Preconditions;
 import java.util.List;
 
@@ -11,6 +12,10 @@ import static com.sdlcpro.springlens.util.DefensiveCopies.immutableListOrEmpty;
  * <p>The {@code matches} list is defensively copied on construction, so instances
  * are deeply immutable and safe to share across contexts and threads.
  *
+ * <p>This type is a response model marked with {@link SpringLensWritable}, so it is
+ * serialized as the body of Spring-Lens REST responses using the
+ * {@code application/vnd.sdlc-pro.spring-lens.v2+json} media type.
+ *
  * @param contextId the identifier of the Spring application context
  * @param source    the source class or configuration that was evaluated;
  *                  must not be null
@@ -19,7 +24,7 @@ import static com.sdlcpro.springlens.util.DefensiveCopies.immutableListOrEmpty;
  *                  to an empty list, and the supplied list is copied
  * @since 1.0
  */
-
+@SpringLensWritable
 public record ConditionEvaluationInfo(
         String contextId,
         String source,

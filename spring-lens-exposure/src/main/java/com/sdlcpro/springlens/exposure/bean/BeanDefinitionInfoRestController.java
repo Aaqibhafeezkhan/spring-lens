@@ -3,12 +3,12 @@ package com.sdlcpro.springlens.exposure.bean;
 import com.sdlcpro.springlens.annotation.SpringLensEndpoint;
 import com.sdlcpro.springlens.annotation.SpringLensInternalComponent;
 import com.sdlcpro.springlens.exposure.ApiResponseHandler;
+import com.sdlcpro.springlens.exposure.SpringLensMediaType;
 import com.sdlcpro.springlens.model.bean.BeanInfoCompositeKey;
 import com.sdlcpro.springlens.model.bean.BeanRole;
 import com.sdlcpro.springlens.query.PageRequest;
 import com.sdlcpro.springlens.query.Sort;
 import com.sdlcpro.springlens.repository.bean.BeanDefinitionInfoRepository;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,6 +42,8 @@ public class BeanDefinitionInfoRestController {
     /**
      * Returns a page of collected bean metadata.
      *
+     * <p>Produces {@link SpringLensMediaType#APPLICATION_SPRING_LENS_JSON_VALUE}.
+     *
      * @param contextId  the value of application context id
      * @param beanName   the unique bean name for each application context
      * @param scope      the scope of the bean (like: singleton, prototype, request
@@ -62,7 +64,7 @@ public class BeanDefinitionInfoRestController {
      * {@link com.sdlcpro.springlens.query.PageResponse page} of bean
      * definitions
      */
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(produces = SpringLensMediaType.APPLICATION_SPRING_LENS_JSON_VALUE)
     public ResponseEntity<?> getBeanDefinitionInfo(
             @RequestParam(value = "contextId", required = false) String contextId,
             @RequestParam(value = "beanName", required = false) String beanName,
@@ -103,12 +105,14 @@ public class BeanDefinitionInfoRestController {
     /**
      * Return BeanInstanceInfo according to the contextId and beanName
      *
+     * <p>Produces {@link SpringLensMediaType#APPLICATION_SPRING_LENS_JSON_VALUE}.
+     *
      * @param contextId the value of application context id
      * @param beanName  the unique bean name for each application context
      * @return a {@link ResponseEntity} by wrapping the
      * {@link com.sdlcpro.springlens.model.bean.instance.BeanInstanceInfo}
      */
-    @GetMapping(value = "/find", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/find", produces = SpringLensMediaType.APPLICATION_SPRING_LENS_JSON_VALUE)
     public ResponseEntity<?> getBeanDefinitionInfo(
             @RequestParam("contextId") String contextId,
             @RequestParam("beanName") String beanName) {
@@ -125,10 +129,12 @@ public class BeanDefinitionInfoRestController {
      * <p>The summary contains aggregated bean bean-definition distributions,
      * including context, scope, role, loading mode, and total counts.</p>
      *
+     * <p>Produces {@link SpringLensMediaType#APPLICATION_SPRING_LENS_JSON_VALUE}.
+     *
      * @return an HTTP response containing the bean bean-definition summary
      * wrapped by the standardized {@link ResponseEntity}
      */
-    @GetMapping(value = "/summary", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/summary", produces = SpringLensMediaType.APPLICATION_SPRING_LENS_JSON_VALUE)
     public ResponseEntity<?> getBeanDefinitionSummary() {
         return ApiResponseHandler.handle(
                 this.beanDefinitionInfoRepository::getBeanDefinitionSummary
@@ -138,12 +144,14 @@ public class BeanDefinitionInfoRestController {
     /**
      * Return BeanDependency with pagination
      *
+     * <p>Produces {@link SpringLensMediaType#APPLICATION_SPRING_LENS_JSON_VALUE}.
+     *
      * @param pageNumber zero-based page index (defaults to {@code 0})
      * @param pageSize   the number of records per page (defaults to {@code 100})
      * @return an HTTP response containing the BeanDependency
      * wrapped by the standardized {@link ResponseEntity}
      */
-    @GetMapping(value = "/dependencies", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/dependencies", produces = SpringLensMediaType.APPLICATION_SPRING_LENS_JSON_VALUE)
     public ResponseEntity<?> getBeanDefinitionDependency(
             @RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
             @RequestParam(value = "pageSize", defaultValue = "100") int pageSize

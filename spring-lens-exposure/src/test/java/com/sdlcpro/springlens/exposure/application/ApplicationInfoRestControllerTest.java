@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.sdlcpro.springlens.exposure.SpringLensMediaType;
 import com.sdlcpro.springlens.model.application.ApplicationInfo;
 import com.sdlcpro.springlens.model.application.JavaInfo;
 import com.sdlcpro.springlens.model.application.SpringInfo;
@@ -12,7 +13,6 @@ import com.sdlcpro.springlens.model.application.StartupInfo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -56,7 +56,7 @@ class ApplicationInfoRestControllerTest {
     @Test
     @DisplayName("GET application endpoint returns application metadata as JSON")
     void returnsApplicationInfoAsJson() throws Exception {
-        mockMvc.perform(get("/spring-lens/api/application").accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/spring-lens/api/application").accept(SpringLensMediaType.APPLICATION_SPRING_LENS_JSON_VALUE))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name").value("orders-service"))
                 .andExpect(jsonPath("$.activeProfiles[0]").value("prod"))

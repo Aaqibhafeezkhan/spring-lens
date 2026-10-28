@@ -3,13 +3,13 @@ package com.sdlcpro.springlens.exposure.bean;
 import com.sdlcpro.springlens.annotation.SpringLensEndpoint;
 import com.sdlcpro.springlens.annotation.SpringLensInternalComponent;
 import com.sdlcpro.springlens.exposure.ApiResponseHandler;
+import com.sdlcpro.springlens.exposure.SpringLensMediaType;
 import com.sdlcpro.springlens.model.bean.condition.ConditionEvaluationInfo;
 import com.sdlcpro.springlens.model.bean.condition.ConditionEvaluationKey;
 import com.sdlcpro.springlens.model.bean.condition.ConditionOutcome;
 import com.sdlcpro.springlens.query.PageRequest;
 import com.sdlcpro.springlens.query.Sort;
 import com.sdlcpro.springlens.repository.bean.ConditionEvaluationInfoRepository;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,6 +53,8 @@ public class ConditionEvaluationInfoRestController {
     /**
      * Returns a filtered page of condition evaluation snapshots.
      *
+     * <p>Produces {@link SpringLensMediaType#APPLICATION_SPRING_LENS_JSON_VALUE}.
+     *
      * @param contextId  optional Spring application context identifier
      * @param source     optional auto-configuration source name
      * @param outcome    optional aggregate evaluation outcome
@@ -69,7 +71,7 @@ public class ConditionEvaluationInfoRestController {
      * @return an HTTP response containing a page of {@link
      * ConditionEvaluationInfo condition evaluation snapshots}
      */
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(produces = SpringLensMediaType.APPLICATION_SPRING_LENS_JSON_VALUE)
     public ResponseEntity<?> getConditionEvaluationInfo(
             @RequestParam(value = "contextId", required = false) String contextId,
             @RequestParam(value = "source", required = false) String source,
@@ -105,13 +107,15 @@ public class ConditionEvaluationInfoRestController {
      * Returns one condition evaluation snapshot identified by its application
      * context and auto-configuration source.
      *
+     * <p>Produces {@link SpringLensMediaType#APPLICATION_SPRING_LENS_JSON_VALUE}.
+     *
      * @param contextId the Spring application context identifier
      * @param source    the evaluated auto-configuration source
      * @return an HTTP response containing the matching condition evaluation
      * snapshot, or a standardized {@code 404 Not Found} response when
      * no matching snapshot exists
      */
-    @GetMapping(value = "/find", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/find", produces = SpringLensMediaType.APPLICATION_SPRING_LENS_JSON_VALUE)
     public ResponseEntity<?> getConditionEvaluationInfo(
             @RequestParam("contextId") String contextId,
             @RequestParam("source") String source) {
@@ -129,10 +133,12 @@ public class ConditionEvaluationInfoRestController {
      * <p>The summary contains aggregated condition evaluation repost data,
      * including total condition source, matched, unmatched and total condition evaluation count.</p>
      *
+     * <p>Produces {@link SpringLensMediaType#APPLICATION_SPRING_LENS_JSON_VALUE}.
+     *
      * @return an HTTP response containing the {@link com.sdlcpro.springlens.model.bean.condition.ConditionEvaluationSummary}
      * wrapped by the standardized {@link ResponseEntity}
      */
-    @GetMapping(value = "/summary", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/summary", produces = SpringLensMediaType.APPLICATION_SPRING_LENS_JSON_VALUE)
     public ResponseEntity<?> getBeanDefinitionSummary() {
         return ApiResponseHandler.handle(this.conditionEvaluationInfoRepository::getConditionEvaluationSummary);
     }

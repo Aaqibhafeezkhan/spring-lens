@@ -1,10 +1,21 @@
 package com.sdlcpro.springlens.model.bean.instance;
 
+import com.sdlcpro.springlens.annotation.SpringLensWritable;
 import com.sdlcpro.springlens.util.DefensiveCopies;
 import com.sdlcpro.springlens.util.Preconditions;
 
 import java.util.Map;
 
+/**
+ * Aggregated statistics about the bean instances created by the application,
+ * including how they are distributed across contexts and scopes and how long
+ * their initialization took.
+ *
+ * <p>This type is a response model marked with {@link SpringLensWritable}, so it is
+ * serialized as the body of Spring-Lens REST responses using the
+ * {@code application/vnd.sdlc-pro.spring-lens.v2+json} media type.
+ */
+@SpringLensWritable
 public record BeanInstanceSummary(
         long totalCreatedInstances,
         Map<String, Long> contextDistribution,
