@@ -4,11 +4,11 @@ import com.sdlcpro.springlens.annotation.SpringLensEndpoint;
 import com.sdlcpro.springlens.annotation.SpringLensInternalComponent;
 import com.sdlcpro.springlens.exception.DataNotFoundException;
 import com.sdlcpro.springlens.exposure.ApiResponseHandler;
+import com.sdlcpro.springlens.exposure.SpringLensMediaType;
 import com.sdlcpro.springlens.model.bean.BeanInfoCompositeKey;
 import com.sdlcpro.springlens.query.PageRequest;
 import com.sdlcpro.springlens.query.Sort;
 import com.sdlcpro.springlens.repository.bean.BeanInstanceInfoRepository;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,6 +53,8 @@ public class BeanInstanceInfoRestController {
     /**
      * Returns a filtered page of collected bean bean=instance records.
      *
+     * <p>Produces {@link SpringLensMediaType#APPLICATION_SPRING_LENS_JSON_VALUE}.
+     *
      * @param contextId  optional Spring application context identifier
      * @param beanName   optional bean name
      * @param type       optional fully qualified bean type name
@@ -71,7 +73,7 @@ public class BeanInstanceInfoRestController {
      * @return an HTTP response containing the requested page of bean bean=instance
      * records, wrapped by {@link ApiResponseHandler}
      */
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(produces = SpringLensMediaType.APPLICATION_SPRING_LENS_JSON_VALUE)
     public ResponseEntity<?> getBeanInstanceInfo(
             @RequestParam(value = "contextId", required = false) String contextId,
             @RequestParam(value = "beanName", required = false) String beanName,
@@ -111,12 +113,14 @@ public class BeanInstanceInfoRestController {
      * Returns one bean bean=instance record identified by its application context and
      * bean name.
      *
+     * <p>Produces {@link SpringLensMediaType#APPLICATION_SPRING_LENS_JSON_VALUE}.
+     *
      * @param contextId the Spring application context identifier
      * @param beanName  the bean name within the application context
      * @return an HTTP response containing the matching record, or a standardized
      * {@code 404 Not Found} response when no record exists for the key
      */
-    @GetMapping(value = "/find", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/find", produces = SpringLensMediaType.APPLICATION_SPRING_LENS_JSON_VALUE)
     public ResponseEntity<?> getBeanInstanceInfo(
             @RequestParam("contextId") String contextId,
             @RequestParam("beanName") String beanName) {
@@ -130,12 +134,14 @@ public class BeanInstanceInfoRestController {
     /**
      * Returns single bean bean=instance proxy information according to the given contextId and beanName
      *
+     * <p>Produces {@link SpringLensMediaType#APPLICATION_SPRING_LENS_JSON_VALUE}.
+     *
      * @param contextId the Spring application context identifier
      * @param beanName  the bean name within the application context
      * @return {@link ResponseEntity} containing the
      * {@link  com.sdlcpro.springlens.model.bean.instance.BeanInstanceProxyInfo) if found at repository
      */
-    @GetMapping(value = "/proxy-info", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/proxy-info", produces = SpringLensMediaType.APPLICATION_SPRING_LENS_JSON_VALUE)
     public ResponseEntity<?> getBeanInstanceProxyInfo(
             @RequestParam(value = "contextId") String contextId,
             @RequestParam(value = "beanName") String beanName
@@ -155,10 +161,12 @@ public class BeanInstanceInfoRestController {
      * including total created instances, context distribution, scope distribution,
      * bean=instance having bean-definition count etc</p>
      *
+     * <p>Produces {@link SpringLensMediaType#APPLICATION_SPRING_LENS_JSON_VALUE}.
+     *
      * @return an HTTP response containing the {@link com.sdlcpro.springlens.model.bean.instance.BeanInstanceSummary}
      * wrapped by the standardized {@link ResponseEntity}
      */
-    @GetMapping(value = "/summary", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/summary", produces = SpringLensMediaType.APPLICATION_SPRING_LENS_JSON_VALUE)
     public ResponseEntity<?> getBeanInstanceSummary() {
         return ApiResponseHandler.handle(this.beanInstanceInfoRepository::getBeanInstanceSummary);
     }

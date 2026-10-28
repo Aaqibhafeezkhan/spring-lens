@@ -1,5 +1,6 @@
 package com.sdlcpro.springlens.model.application;
 
+import com.sdlcpro.springlens.annotation.SpringLensWritable;
 import com.sdlcpro.springlens.util.DefensiveCopies;
 import com.sdlcpro.springlens.util.Preconditions;
 
@@ -7,6 +8,10 @@ import java.util.Set;
 
 /**
  * Immutable snapshot of the runtime metadata for a Spring application.
+ *
+ * <p>This type is a response model marked with {@link SpringLensWritable}, so it is
+ * serialized as the body of Spring-Lens REST responses using the
+ * {@code application/vnd.sdlc-pro.spring-lens.v2+json} media type.
  *
  * @author Ixtiyorxon
  * @since 2026-08-28
@@ -18,6 +23,7 @@ import java.util.Set;
  * @param java            Java runtime information
  * @param startup         application context startup information
  */
+@SpringLensWritable
 public record ApplicationInfo(
         String name,
         Set<String> activeProfiles,

@@ -1,10 +1,20 @@
 package com.sdlcpro.springlens.query;
 
+import com.sdlcpro.springlens.annotation.SpringLensWritable;
 import com.sdlcpro.springlens.util.Preconditions;
 
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * A page of results together with its pagination metadata, such as page number,
+ * page size, total pages and total elements.
+ *
+ * <p>This type is a response model marked with {@link SpringLensWritable}, so it is
+ * serialized as the body of Spring-Lens REST responses using the
+ * {@code application/vnd.sdlc-pro.spring-lens.v2+json} media type.
+ */
+@SpringLensWritable
 public class PageResponse<T> implements Serializable {
     private final List<T> content;
     private final PageRequest pageRequest;
