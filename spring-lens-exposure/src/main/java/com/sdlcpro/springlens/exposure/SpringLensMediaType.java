@@ -3,6 +3,7 @@ package com.sdlcpro.springlens.exposure;
 import org.springframework.http.MediaType;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Set;
 
 /**
  * Vendor media types owned by Spring Lens.
@@ -33,6 +34,11 @@ public final class SpringLensMediaType {
      */
     public static final String APPLICATION_SPRING_LENS_JSON_UTF8_VALUE = "application/vnd.sdlc-pro.spring-lens.v2+json;charset=UTF-8";
 
+    /**
+     * Keep all supported MediaTypes
+     */
+    private static final Set<MediaType> SUPPORTED_TYPES;
+
     static {
         APPLICATION_SPRING_LENS_JSON = new MediaType(
                 "application",
@@ -44,9 +50,15 @@ public final class SpringLensMediaType {
                 "vnd.sdlc-pro.spring-lens.v2+json",
                 StandardCharsets.UTF_8
         );
+
+        SUPPORTED_TYPES = Set.of(APPLICATION_SPRING_LENS_JSON, APPLICATION_SPRING_LENS_JSON_UTF8);
     }
 
     private SpringLensMediaType() {
         throw new UnsupportedOperationException("SpringLensMediaType is an utility class and cannot be instantiated");
+    }
+
+    public static Set<MediaType> getSpringLensSupportedMediaTypes() {
+        return SUPPORTED_TYPES;
     }
 }
