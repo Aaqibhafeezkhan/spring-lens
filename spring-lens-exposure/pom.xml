@@ -21,6 +21,10 @@
         Exposure module for spring lens to expose the REST endpoints
     </description>
 
+    <properties>
+        <gson.version>2.13.2</gson.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -29,6 +33,11 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>${gson.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.servlet</groupId>
