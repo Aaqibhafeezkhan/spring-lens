@@ -48,11 +48,12 @@ public class SpringLensHttpExposureAutoConfiguration {
 
     @Configuration
     @SpringLensInternalComponent
+    @Role(BeanDefinition.ROLE_INFRASTRUCTURE)
     @ConditionalOnClass(GsonSpringLensHttpMessageConverter.class)
     static class GsonSpringLensHttpMessageConverterConfiguration {
 
         @Bean
-        @Role(BeanDefinition.ROLE_INFRASTRUCTURE)
+        @Role(BeanDefinition.ROLE_SUPPORT)
         @ConditionalOnMissingBean(GsonSpringLensHttpMessageConverter.class)
         public GsonSpringLensHttpMessageConverter gsonSpringLensHttpMessageConverter() {
             return new GsonSpringLensHttpMessageConverter();
