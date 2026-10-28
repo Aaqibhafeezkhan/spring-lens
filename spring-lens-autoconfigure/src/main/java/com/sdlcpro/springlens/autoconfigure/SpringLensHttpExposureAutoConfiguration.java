@@ -27,7 +27,6 @@ import java.util.List;
         HttpMessageConverter.class,
         AbstractSpringLensHttpMessageConverter.class
 })
-@Import(SpringLensHttpExposureAutoConfiguration.GsonSpringLensHttpMessageConverterConfiguration.class)
 public class SpringLensHttpExposureAutoConfiguration {
 
     @Bean
